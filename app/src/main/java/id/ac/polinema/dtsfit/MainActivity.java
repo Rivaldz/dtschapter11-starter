@@ -15,7 +15,9 @@ import id.ac.polinema.dtsfit.adapters.CaloriesAdapter;
 import id.ac.polinema.dtsfit.fragments.CaloryFragment;
 import id.ac.polinema.dtsfit.fragments.ProfileFragment;
 import id.ac.polinema.dtsfit.fragments.SaveCaloryFragment;
+import id.ac.polinema.dtsfit.generator.ServiceGenerator;
 import id.ac.polinema.dtsfit.models.Calory;
+import id.ac.polinema.dtsfit.services.CaloryService;
 
 public class MainActivity extends AppCompatActivity implements
 		CaloryFragment.OnFragmentInteractionListener,
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements
 	private Profile profile;
 
 	// TODO: Definisikan CaloryService caloryService
+	private CaloryService caloryService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements
 		Profile profile = Application.provideProfile();
 
 		// TODO: Instansiasi nilai caloryService dengan menggunakan ServiceGenerator
+		caloryService = ServiceGenerator.createService(CaloryService.class);
 
         Fragment startFragment = (profile.getBmr() != 0)
 				? CaloryFragment.newInstance()
